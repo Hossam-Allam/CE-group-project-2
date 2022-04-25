@@ -22,7 +22,11 @@ main ()
   bool user_found = 1; //boolean variable to check if the user has been found, set as true in the beginning so the program doesnt keep on printing user not found before checking all users
   for (j = 0; j < 4; j++) // to check each element in the array
   {
-  if (userinput == usernames[j])
+      //if (did_vote[j] == true){
+         // printf("You have already voted, voting again will modify your previous vote\n");
+          
+      //}
+   if (userinput == usernames[j])
     {
       user_found = 1;
       printf ("pls enter your password: ");
@@ -40,8 +44,12 @@ main ()
        
       if (value == 0) //if password is correct
 	{
+	    if (did_vote[j] == true){
+          printf("You have already voted, voting again will modify your previous vote\n");
+          
+      }
 	  printf
-	    ("do you think reform x should be passed?\n Vote '1' for yes or '0' for no: ");
+	    ("do you think reform x should be passed?\n Vote '1' for yes or '0' for no or '2' to abstain from voting or '3' to change your password: ");
 	  scanf ("%ld", &userinput);
 	  
 	  
@@ -60,7 +68,7 @@ main ()
 	        did_vote[j] = true; //was intended to keep track of who voted and who did not but i couldnt make it work
 	    }
 	    
-if (userinput == 2) 
+	    if (userinput == 3) 
 	    {
 	        printf("Please enter your new password: ");
 	        scanf ("%s", str2); //to take the user input for the new password
@@ -68,6 +76,13 @@ if (userinput == 2)
 	        printf("your new password is : %s" , passwords[j]);
 	        printf("\nPlease enter your username and password again to vote.");
 	        
+	    }
+	    
+	    if (userinput == 2)
+	    {
+	        printf("you have abstained from voting");
+	        did_vote[j] = false; 
+	        votes[j]= NULL; //his vote is not recorded as a yes or no
 	    }
 	  
 	    
@@ -85,6 +100,8 @@ if (userinput == 2)
 
 
 }
+
+
 
 
 
